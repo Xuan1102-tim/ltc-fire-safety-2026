@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "releaseSha256": "681167da84f227573ad6abfdd008913beed23ad7c13ac8f925bb25eae81afea4",
+  "version": "1.0.2",
+  "releaseSha256": "6952fa8a6f333b5aa53b6b3c24d13c23b42b671a797ad9a0cc335b71d9d0e7c5",
   "scenes": 67,
   "embeddedMedia": false,
   "videoLoading": "on user playback",
@@ -107,8 +107,8 @@
     },
     {
       "file": "index.html",
-      "bytes": 249814,
-      "sha256": "06ffa758818978a804fb36a93fcb1c2d4ced168c345d845f34fda09801e0376b"
+      "bytes": 230437,
+      "sha256": "379335f6bc20efd0e7c2015b5d4a714db2ce55ae500ce2192e3cfc6523bfd5bb"
     },
     {
       "file": ".nojekyll",
