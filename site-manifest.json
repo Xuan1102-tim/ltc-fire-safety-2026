@@ -1,6 +1,6 @@
 {
-  "version": "1.0.2",
-  "releaseSha256": "6952fa8a6f333b5aa53b6b3c24d13c23b42b671a797ad9a0cc335b71d9d0e7c5",
+  "version": "1.1.0",
+  "releaseSha256": "ea30e4e0e4f76d12659b4e4badf36799d5b06fc03fd29c9da54a775813b57748",
   "scenes": 67,
   "embeddedMedia": false,
   "videoLoading": "on user playback",
@@ -81,6 +81,121 @@
       "sha256": "dc880ee0c97a50b73daab1fdb6ac739ff164121fa4173bb7a665e2ab43904540"
     },
     {
+      "file": "assets/images/visual-cover-v1.png",
+      "bytes": 1663357,
+      "sha256": "b4c9283bd26b5832a2b70ea6a044e2527e4f2bc17217f30d00e08aa3eb893888"
+    },
+    {
+      "file": "assets/images/visual-weather-v1.png",
+      "bytes": 1715531,
+      "sha256": "f8b191a63e8c55a0dad16d6630b88bc48c87a16a3aa79373661c958e46027f0f"
+    },
+    {
+      "file": "assets/images/visual-team-v1.png",
+      "bytes": 2127803,
+      "sha256": "cbcdcd66f39709fef25a89a4ce7b9867184f7b384914ad35602a9ac4fea00bf5"
+    },
+    {
+      "file": "assets/images/visual-power-v1.png",
+      "bytes": 1706417,
+      "sha256": "71418770b0fa705aec0e82b2d4bc9e9092e3bd75ef4c79b4a63f43cd9db5a4d3"
+    },
+    {
+      "file": "assets/images/visual-report-v1.png",
+      "bytes": 1995898,
+      "sha256": "f34e45726a752e5f4d636420e6d7f9137be89c164eb7d025c74fb2e1362141fe"
+    },
+    {
+      "file": "assets/images/visual-equipment-v1.png",
+      "bytes": 1567849,
+      "sha256": "f6c2dda56f39012493682c4233701433373231cca7d91bd06c3f234d84c8aec8"
+    },
+    {
+      "file": "assets/images/visual-supplies-v1.png",
+      "bytes": 2444171,
+      "sha256": "4ce3be1fa18ae6838556fa76d0f39b6e49db1bf6d7f65590764887da2081e6a0"
+    },
+    {
+      "file": "assets/images/icon-quake-v1.png",
+      "bytes": 115650,
+      "sha256": "ada62b42cb862fbef4c4052d14d30cdd1b6aa396b13c0d237726d3f14a68882e"
+    },
+    {
+      "file": "assets/images/icon-weather-v1.png",
+      "bytes": 108378,
+      "sha256": "b9efad71ae1936ccd8dc0360560459182ebbc7291e89f94914a0cf5121c84903"
+    },
+    {
+      "file": "assets/images/icon-power-v1.png",
+      "bytes": 78954,
+      "sha256": "396fc05bcc6ab32b73802e8044610c18b77b721c67b8e9341753f33a2677bd55"
+    },
+    {
+      "file": "assets/images/icon-fire-v1.png",
+      "bytes": 59784,
+      "sha256": "8a06a74ecf15b12acebc78e55aa376b964dce0b1183a65468c30b9138464ad2e"
+    },
+    {
+      "file": "assets/images/icon-care-v1.png",
+      "bytes": 94804,
+      "sha256": "1d5128aa9a559b7431685083f5f03875180ef594fd0601925c30f42354d555bb"
+    },
+    {
+      "file": "assets/images/icon-communication-v1.png",
+      "bytes": 70056,
+      "sha256": "29a8fc8742a227225ee72bc45f953d92de086970d7c5e5d451afe3faf6e185aa"
+    },
+    {
+      "file": "assets/images/icon-phone-v1.png",
+      "bytes": 76874,
+      "sha256": "218e47c9b4d735f797dd3c1e46512ba54ac6291a600f8032e16e12b6146f04aa"
+    },
+    {
+      "file": "assets/images/icon-team-v1.png",
+      "bytes": 112926,
+      "sha256": "e140da72c513821bc64f5d471b1af32714666d1a21a6f709b780c7b75f7e1352"
+    },
+    {
+      "file": "assets/images/icon-door-v1.png",
+      "bytes": 59393,
+      "sha256": "687683916d13d41df18de972c8e1e046e548ff10f7e1045b3f3aa5344df068b8"
+    },
+    {
+      "file": "assets/images/icon-route-v1.png",
+      "bytes": 62600,
+      "sha256": "69347047fa262328284c0d425213dcb3545285b4c64d22ba02bfadc8a364556b"
+    },
+    {
+      "file": "assets/images/icon-map-v1.png",
+      "bytes": 96147,
+      "sha256": "a6f79e785ad8a42cf2ec0fafd4f4f3a753263028c2d978f3fbf6fb5710ab8485"
+    },
+    {
+      "file": "assets/images/icon-alarm-v1.png",
+      "bytes": 83370,
+      "sha256": "cc3a9bbc7dd4fecf005fcc6245275c2fe210c27b71cba01a93e70110d801b579"
+    },
+    {
+      "file": "assets/images/icon-extinguisher-v1.png",
+      "bytes": 63443,
+      "sha256": "24e861436f5e4e6960f4a21ac6a0acba815d2d36f8c650a1fa0f15b556af7d9f"
+    },
+    {
+      "file": "assets/images/icon-water-v1.png",
+      "bytes": 54437,
+      "sha256": "59cc7efd1596bbe924817f0d782c5fdeb784829a38c9b28dd7173a3787faf81b"
+    },
+    {
+      "file": "assets/images/icon-supplies-v1.png",
+      "bytes": 125847,
+      "sha256": "3e5b6c41c8a89ce7a392af777fe77a19d6c37257079fe1a7f5046931d715cbd8"
+    },
+    {
+      "file": "assets/images/icon-checklist-v1.png",
+      "bytes": 64486,
+      "sha256": "5d683a5c80d1df226173980a028dc4a9841d7f55a1c3b0ca859338ae299322d3"
+    },
+    {
       "file": "assets/videos/earthquake-drop-cover-hold.mp4",
       "bytes": 6420543,
       "sha256": "ea6f445c0db0dc2907d65cbd4614a0da29425f5daea9b5ce642c5f0e643ed1c7"
@@ -107,8 +222,8 @@
     },
     {
       "file": "index.html",
-      "bytes": 230437,
-      "sha256": "379335f6bc20efd0e7c2015b5d4a714db2ce55ae500ce2192e3cfc6523bfd5bb"
+      "bytes": 263147,
+      "sha256": "ca19d9ba1dfb0021f552862ec7a375f22057ce1c5209cce4eda2b0cd59e733ac"
     },
     {
       "file": ".nojekyll",
