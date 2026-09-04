@@ -1,6 +1,6 @@
 {
-  "version": "1.1.0",
-  "releaseSha256": "ea30e4e0e4f76d12659b4e4badf36799d5b06fc03fd29c9da54a775813b57748",
+  "version": "1.2.0",
+  "releaseSha256": "5cd70523221632e785602744578cf0e3a97fb8c257c6817352d7e6b198b01410",
   "scenes": 67,
   "embeddedMedia": false,
   "videoLoading": "on user playback",
@@ -222,8 +222,18 @@
     },
     {
       "file": "index.html",
-      "bytes": 263147,
-      "sha256": "ca19d9ba1dfb0021f552862ec7a375f22057ce1c5209cce4eda2b0cd59e733ac"
+      "bytes": 362178,
+      "sha256": "a743d107861bfd6ac2ea6e8ce2f68cc486f9a4d65e385535a941fa04d59610c8"
+    },
+    {
+      "file": "questions.html",
+      "bytes": 6681,
+      "sha256": "e4531b57eafd1fb2d46912394026af1e296a1456b6c2942ce5cd8830afbd8daf"
+    },
+    {
+      "file": "third-party-notices.txt",
+      "bytes": 1095,
+      "sha256": "3679822aa969f38c9822175877a0b083c7df609ac98a1c5233fb8eebe1d4c54b"
     },
     {
       "file": ".nojekyll",
@@ -237,8 +247,8 @@
     },
     {
       "file": "README.md",
-      "bytes": 687,
-      "sha256": "b96add6448f94fcba269bcb7d75e9d4fce20477d75a414954d15bbf98ac6e594"
+      "bytes": 798,
+      "sha256": "7ec809b8b37e4170e6d6d4b490f7a3b9ebe92d05f350cb9f433a7da5296e0617"
     }
   ]
 }

@@ -1,0 +1,54 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>課堂提問｜長照機構防災</title><meta name="robots" content="noindex"><style>
+*{box-sizing:border-box}body{margin:0;padding:28px 20px;min-height:100dvh;background:radial-gradient(circle at top right,#164f5f,#06131f 60%);color:#f4f8fb;font:18px/1.6 'Microsoft JhengHei',sans-serif}main{max-width:540px;margin:5vh auto}header small{color:#57d8d1;letter-spacing:.15em}h1{font-size:36px;margin:10px 0}p{color:#bdd0da}form{padding:24px;border:1px solid #36596b;border-radius:20px;background:#0b2534}label{display:block;font-weight:bold;margin-bottom:12px}textarea{font:inherit;width:100%;resize:vertical;min-height:150px;padding:14px;border-radius:12px;border:2px solid #547585;background:#04151f;color:#fff}textarea:focus{outline:2px solid #57d8d1}button{font:800 20px 'Microsoft JhengHei',sans-serif;width:100%;margin-top:18px;padding:16px;background:#57d8d1;border:0;border-radius:12px;color:#062126;cursor:pointer}button:disabled{opacity:.45;cursor:default}.count{text-align:right;color:#abc2cf;font-size:14px}output{display:block;margin:20px 0;padding:14px;border-left:4px solid #ffc857;background:#ffffff08}footer{font-size:14px;color:#a7bdc9;margin-top:24px}a{color:#57d8d1}
+</style></head><body><main><header><small>2026 長照機構防災</small><h1>有問題，現在問。</h1><p>送出後，問題會以彈幕出現在老師的投影片上。</p></header><output id="status" role="status">正在連接本場課堂…</output><form id="questionForm"><label for="question">你想問老師什麼？</label><textarea id="question" maxlength="80" placeholder="例如：房間裡都是煙，應該先關門嗎？" required disabled></textarea><div class="count"><span id="count">0</span> / 80</div><button id="submit" disabled>送出問題</button></form><footer>不需填姓名。請勿輸入住民姓名、電話或其他個人資料。問題會傳送給講師並可能公開顯示；每 10 秒可送一次。老師暫停彈幕時，仍會收到問題。</footer></main><script>
+// Loaded only after the lecturer starts a room, or a student opens the question page.
+async function connectQuestions() {
+  const base = 'https://www.gstatic.com/firebasejs/12.18.0/';
+  // The official init.js endpoint supports script loading across origins;
+  // init.json does not advertise CORS. Keep public app configuration out of Git.
+  const configPromise = new Promise((resolve,reject)=>{
+    const previous=window.firebase,script=document.createElement('script');let config;
+    window.firebase={initializeApp:value=>{config=value}};
+    const clean=()=>{script.remove();if(previous===undefined)delete window.firebase;else window.firebase=previous};
+    script.onload=()=>{clean();config?resolve(config):reject(Error('設定未載入'))};
+    script.onerror=()=>{clean();reject(Error('設定無法連線'))};
+    script.src='https://my-teaching-tools-20260823.firebaseapp.com/__/firebase/init.js';
+    document.head.append(script);
+  });
+  const [appSDK, authSDK, dbSDK, config] = await Promise.all([
+    import(base + 'firebase-app.js'), import(base + 'firebase-auth.js'),
+    import(base + 'firebase-firestore.js'), configPromise
+  ]);
+  if (config.projectId !== 'my-teaching-tools-20260823') throw Error('課堂專案不符');
+  const app = appSDK.initializeApp(config, 'ltc-questions-' + crypto.randomUUID());
+  const auth = authSDK.initializeAuth(app, { persistence: authSDK.inMemoryPersistence });
+  const { user } = await authSDK.signInAnonymously(auth);
+  const db = dbSDK.getFirestore(app);
+  return { ...dbSDK, db, user, dispose: async () => {
+    await dbSDK.terminate(db); await authSDK.deleteUser(user); await appSDK.deleteApp(app);
+  }};
+}
+
+const roomId=location.hash.slice(1),status=document.getElementById('status'),input=document.getElementById('question'),button=document.getElementById('submit');
+let api,room,open=false,busy=false,nextSend=0,pending=null,expiresAt=0;
+function refresh(){if(open&&Date.now()>=expiresAt){open=false;status.textContent='本場提問已到期，請重新掃描老師目前的 QR Code。'}const seconds=Math.max(0,Math.ceil((nextSend-Date.now())/1000));input.disabled=!open;button.disabled=!open||busy||seconds>0||!navigator.onLine;button.textContent=busy?'傳送中，請稍候…':seconds?'請等 '+seconds+' 秒':'送出問題'}
+input.oninput=()=>document.getElementById('count').textContent=String(input.value.length);
+async function init(){
+ try{if(!/^[a-zA-Z0-9]{20}$/.test(roomId))throw Error('invalid');api=await connectQuestions();room=api.doc(api.db,'ltc_rooms',roomId);
+ api.onSnapshot(room,s=>{expiresAt=s.exists()?s.data().expiresAt.toMillis():0;open=s.exists()&&s.data().open&&expiresAt>Date.now();status.textContent=open?'已連上課堂，可以送出問題。':'這場提問已結束或連結已失效，請掃描老師目前畫面的 QR Code。';refresh()},()=>{open=false;status.textContent='無法讀取課堂，請確認網路後重新整理。';refresh()});
+ }catch{status.textContent='無法連上本場課堂，請確認網路並重新掃描老師的 QR Code。'}
+}
+document.getElementById('questionForm').onsubmit=async e=>{
+ e.preventDefault();const text=input.value.trim();if(!open||busy||Date.now()<nextSend||!text||text.length>80)return;
+ busy=true;refresh();status.textContent='正在傳送，請保持頁面開啟…';
+ try{const f=api,s=await f.getDocFromServer(room);if(!s.exists()||!s.data().open||s.data().expiresAt.toMillis()<=Date.now()){open=false;throw Error('closed')}
+ const message=f.doc(f.collection(room,'messages')),rate=f.doc(room,'senders',f.user.uid),batch=f.writeBatch(f.db);
+ batch.set(message,{uid:f.user.uid,text,scene:s.data().scene,createdAt:f.serverTimestamp()});
+ batch.set(rate,{lastAt:f.serverTimestamp(),messageId:message.id});
+ pending=setTimeout(()=>{status.textContent='尚未收到送達確認，正在等待網路；請勿重複送出。'},12000);
+ await batch.commit();clearTimeout(pending);nextSend=Date.now()+10000;input.value='';input.oninput();status.textContent='✓ 問題已送達！老師會看到你的問題。';
+ }catch(error){clearTimeout(pending);status.textContent=!open?'這場提問已結束，請重新掃碼。':error.code==='permission-denied'?'尚未送出：請等 10 秒再試，或確認課堂仍開放。':'尚未送出，請確認網路後再試。';}
+ finally{busy=false;refresh()}
+};
+window.addEventListener('offline',()=>{status.textContent='目前離線，請恢復網路後再送出。';refresh()});window.addEventListener('online',refresh);setInterval(refresh,1000);init();
+</script></body></html>
