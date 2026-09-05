@@ -249,6 +249,11 @@
       "file": "README.md",
       "bytes": 798,
       "sha256": "7ec809b8b37e4170e6d6d4b490f7a3b9ebe92d05f350cb9f433a7da5296e0617"
+    },
+    {
+      "file": "downloads/firebase-classroom-danmaku.zip",
+      "bytes": 31597,
+      "sha256": "b02853896f91b19f4dbeeecfa175bf22b95fd35a3d9d1ee1e2dc17f34ff903cf"
     }
   ]
 }
